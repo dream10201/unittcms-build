@@ -35,6 +35,8 @@ jobs:
         if: ${{ github.event_name == 'workflow_dispatch' && github.ref_name == 'master' }}
         uses: docker/build-push-action@v6
         with:
+          context: .
+          file: ./Dockerfile
           push: true
           tags: |
             ghcr.io/dream10201/unittcms:latest
@@ -44,6 +46,8 @@ jobs:
         if: ${{ github.event_name != 'workflow_dispatch' && github.ref_name == 'master' }}
         uses: docker/build-push-action@v6
         with:
+          context: .
+          file: ./Dockerfile
           push: true
           tags: |
             ghcr.io/dream10201/unittcms:latest
