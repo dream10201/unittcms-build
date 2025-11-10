@@ -51,6 +51,4 @@ jobs:
           push: true
           tags: |
             ghcr.io/dream10201/unittcms:latest
-            # ghcr.io/dream10201/unittcms:${{ steps.fetch-url.outputs.version }}
             docker.io/xiuxiu10201/unittcms:latest
-            # docker.io/xiuxiu10201/unittcms:${{ steps.fetch-url.outputs.version }}
