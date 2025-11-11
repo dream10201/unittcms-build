@@ -16,6 +16,11 @@ jobs:
       - name: Checkout repository
         run: |
           git clone https://github.com/kimatata/unittcms.git
+          cd unittcms
+          git fetch --tags
+          echo "version=$(git tag | sort -V | tail -n 1)" >> $GITHUB_OUTPUT
+          git checkout $(git tag | sort -V | tail -n 1)
+          cd ..
           mv unittcms/* ./
           ls -la
       - name: Set up Docker Buildx
@@ -51,4 +56,6 @@ jobs:
           push: true
           tags: |
             ghcr.io/dream10201/unittcms:latest
+            ghcr.io/dream10201/unittcms:${{ steps.fetch-url.outputs.version }}
             docker.io/xiuxiu10201/unittcms:latest
+            docker.io/xiuxiu10201/unittcms:${{ steps.fetch-url.outputs.version }}
